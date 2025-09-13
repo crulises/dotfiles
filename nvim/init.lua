@@ -133,7 +133,7 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
-  { -- Agerga simbolos relacionados con git tambien algunas utilidades extras para cambios
+  {                   -- Agerga simbolos relacionados con git tambien algunas utilidades extras para cambios
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {
@@ -149,22 +149,22 @@ require('lazy').setup({
   {
     'brenton-leighton/multiple-cursors.nvim',
     version = '*', -- Utiliza la ultima version taggeada
-    opts = {}, -- Funciones de setup que pueden ser llamadas
+    opts = {},     -- Funciones de setup que pueden ser llamadas
     keys = {
-      { '<C-J>', '<Cmd>MultipleCursorsAddDown<CR>', mode = { 'n', 'x' }, desc = 'Add cursor and move down' },
-      { '<C-K>', '<Cmd>MultipleCursorsAddUp<CR>', mode = { 'n', 'x' }, desc = 'Add cursor and move up' },
-      { '<C-LeftMouse>', '<Cmd>MultipleCursorsMouseAddDelete<CR>', mode = { 'n', 'i' }, desc = 'Add or remove cursor' },
+      { '<C-J>',         '<Cmd>MultipleCursorsAddDown<CR>',          mode = { 'n', 'x' }, desc = 'Add cursor and move down' },
+      { '<C-K>',         '<Cmd>MultipleCursorsAddUp<CR>',            mode = { 'n', 'x' }, desc = 'Add cursor and move up' },
+      { '<C-LeftMouse>', '<Cmd>MultipleCursorsMouseAddDelete<CR>',   mode = { 'n', 'i' }, desc = 'Add or remove cursor' },
 
-      { '<Leader>m', '<Cmd>MultipleCursorsAddVisualArea<CR>', mode = { 'x' }, desc = 'Add cursors to the lines of the visual area' },
+      { '<Leader>m',     '<Cmd>MultipleCursorsAddVisualArea<CR>',    mode = { 'x' },      desc = 'Add cursors to the lines of the visual area' },
 
-      { '<Leader>d', '<Cmd>MultipleCursorsAddJumpNextMatch<CR>', mode = { 'n', 'x' }, desc = 'Add cursor and jump to next cword' },
-      { '<Leader>D', '<Cmd>MultipleCursorsJumpNextMatch<CR>', mode = { 'n', 'x' }, desc = 'Jump to next cword' },
+      { '<Leader>d',     '<Cmd>MultipleCursorsAddJumpNextMatch<CR>', mode = { 'n', 'x' }, desc = 'Add cursor and jump to next cword' },
+      { '<Leader>D',     '<Cmd>MultipleCursorsJumpNextMatch<CR>',    mode = { 'n', 'x' }, desc = 'Jump to next cword' },
 
-      { '<Leader>l', '<Cmd>MultipleCursorsLock<CR>', mode = { 'n', 'x' }, desc = 'Lock virtual cursors' },
+      { '<Leader>l',     '<Cmd>MultipleCursorsLock<CR>',             mode = { 'n', 'x' }, desc = 'Lock virtual cursors' },
     },
   },
 
-  { -- Muestra los keybinds que se pueden hacer.
+  {                     -- Muestra los keybinds que se pueden hacer.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Carga cuando sucede el evento 'VimEnter'
     opts = {
@@ -232,7 +232,7 @@ require('lazy').setup({
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Iconos lindos si tenemos instalado alguna Nerd Font
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
     },
     config = function()
       --
@@ -322,7 +322,7 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
@@ -797,7 +797,24 @@ require('lazy').setup({
     --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  }, {
+  "christoomey/vim-tmux-navigator",
+  cmd = {
+    "TmuxNavigateLeft",
+    "TmuxNavigateDown",
+    "TmuxNavigateUp",
+    "TmuxNavigateRight",
+    "TmuxNavigatePrevious",
+    "TmuxNavigatorProcessList",
   },
+  keys = {
+    { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
+    { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
+    { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
+    { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
+    { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+  },
+}
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
@@ -845,7 +862,8 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
-})
+}
+)
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
