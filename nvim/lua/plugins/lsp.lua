@@ -8,20 +8,20 @@
 return {
   'neovim/nvim-lspconfig',
   event = { 'BufReadPost', 'BufNewFile' },
-  
+
   dependencies = {
     -- Automatically install LSP servers
     { 'williamboman/mason.nvim', config = true },
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-    
+
     -- Useful status updates for LSP
     { 'j-hui/fidget.nvim', opts = {} },
-    
+
     -- Neovim Lua LSP configuration
     { 'folke/lazydev.nvim', ft = 'lua', opts = {} },
   },
-  
+
   config = function()
     -- ========================================================================
     -- LSP Attach Callback
@@ -33,7 +33,7 @@ return {
         local map = function(keys, func, desc)
           vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
-        
+
         -- Navigation
         map('gd', require('telescope.builtin').lsp_definitions, 'Go to definition')
         map('gr', require('telescope.builtin').lsp_references, 'Go to references')
@@ -42,15 +42,15 @@ return {
         map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type definition')
         map('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Document symbols')
         map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace symbols')
-        
+
         -- Actions
         map('<leader>rn', vim.lsp.buf.rename, 'Rename')
         map('<leader>ca', vim.lsp.buf.code_action, 'Code action')
         map('<leader>f', vim.lsp.buf.format, 'Format document')
-        
+
         -- Documentation
         map('K', vim.lsp.buf.hover, 'Hover documentation')
-        
+
         -- Highlight references under cursor
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
@@ -60,7 +60,7 @@ return {
             group = highlight_augroup,
             callback = vim.lsp.buf.document_highlight,
           })
-          
+
           vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
             buffer = event.buf,
             group = highlight_augroup,
@@ -69,14 +69,14 @@ return {
         end
       end,
     })
-    
+
     -- ========================================================================
     -- LSP Server Capabilities
     -- ========================================================================
     -- Capabilities advertised to LSP servers
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
-    
+
     -- ========================================================================
     -- Server Configurations
     -- ========================================================================
@@ -95,39 +95,32 @@ return {
           },
         },
       },
-      
-      -- Python
-      -- pyright = {},
-      
-      -- JavaScript/TypeScript
-      -- tsserver = {},
-      
-      -- Add more servers as needed
     }
-    
+
     -- ========================================================================
     -- Mason Setup
     -- ========================================================================
     require('mason').setup()
-    
-    -- List of servers to auto-install
-    local ensure_installed = vim.tbl_keys(servers or {})
-    vim.list_extend(ensure_installed, {
-      'stylua',  -- Lua formatter
-      -- Add more tools here
-    })
-    
+
     require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
-    
-    require('mason-lspconfig').setup({
+
+    require('mason-lspconfig').setup {
+      ensure_installed = {},
+      automatic_installation = false,
       handlers = {
         function(server_name)
+          -- Skip stylua - it's a formatter, not an LSP server
+          if server_name == 'stylua' then
+            return
+          end
+
           local server = servers[server_name] or {}
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
           require('lspconfig')[server_name].setup(server)
         end,
       },
-    })
+    }
+
   end,
 }
 

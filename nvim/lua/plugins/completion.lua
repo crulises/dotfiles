@@ -8,12 +8,12 @@
 return {
   'saghen/blink.cmp',
   version = '*',
-  
+
   dependencies = {
     'L3MON4D3/LuaSnip',  -- Snippet engine
     'rafamadriz/friendly-snippets',  -- Snippet collection
   },
-  
+
   opts = {
     -- ========================================================================
     -- Keymap Configuration
@@ -32,20 +32,20 @@ return {
       -- <C-y> - Accept selection
       -- <Tab>/<S-Tab> - Snippet navigation
     },
-    
+
     -- ========================================================================
     -- Appearance
     -- ========================================================================
     appearance = {
       nerd_font_variant = 'mono',  -- Use 'normal' if not using Nerd Font Mono
     },
-    
+
     -- ========================================================================
     -- Sources
     -- ========================================================================
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
-      
+
       providers = {
         -- Special provider for Neovim Lua development
         lazydev = {
@@ -55,14 +55,14 @@ return {
         },
       },
     },
-    
+
     -- ========================================================================
     -- Snippets
     -- ========================================================================
     snippets = {
       preset = 'luasnip',
     },
-    
+
     -- ========================================================================
     -- Completion Behavior
     -- ========================================================================
@@ -73,7 +73,7 @@ return {
           columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind' } },
         },
       },
-      
+
       documentation = {
         auto_show = true,  -- Show documentation automatically
         auto_show_delay_ms = 500,
@@ -81,13 +81,13 @@ return {
           border = 'rounded',
         },
       },
-      
+
       -- Ghost text (inline suggestions)
       ghost_text = {
         enabled = true,
       },
     },
-    
+
     -- ========================================================================
     -- Signature Help
     -- ========================================================================

@@ -8,26 +8,26 @@
 return {
   'folke/tokyonight.nvim',
   priority = 1000, -- Load before other plugins to avoid color issues
-  
+
   config = function()
     -- Configure the colorscheme
     require('tokyonight').setup({
       style = 'night',  -- Options: night, storm, day, moon
-      
+
       styles = {
         comments = { italic = false },  -- Disable italic comments
         keywords = { italic = false },
         functions = {},
         variables = {},
       },
-      
+
       -- Adjust transparency
       transparent = false,  -- Set to true for transparent background
-      
+
       -- Dim inactive windows
       dim_inactive = false,
     })
-    
+
     -- Apply the colorscheme
     vim.cmd.colorscheme('tokyonight-night')
   end,
