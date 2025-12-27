@@ -165,23 +165,48 @@ return {
         end,
       })
 
-      -- Setup LSP servers
+      -- Get capabilities from cmp
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      local lspconfig = require('lspconfig')
 
-      -- Lua
-      lspconfig.lua_ls.setup({
+      -- Setup LSP servers using new Neovim 0.11+ API
+      -- Lua Language Server
+      vim.lsp.config('lua_ls', {
+        cmd = { 'lua-language-server' },
+        root_markers = { '.luarc.json', '.luarc.jsonc', '.luacheckrc', '.stylua.toml', 'stylua.toml', 'selene.toml', 'selene.yml', '.git' },
         capabilities = capabilities,
         settings = {
           Lua = {
             diagnostics = {
               globals = { 'vim' },
             },
+            workspace = {
+              library = vim.api.nvim_get_runtime_file('', true),
+              checkThirdParty = false,
+            },
+            telemetry = { enable = false },
           },
         },
       })
 
-      -- Add more language servers here
+      -- Auto-enable LSP when opening supported files
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'lua',
+        callback = function()
+          vim.lsp.enable('lua_ls')
+        end,
+      })
+
+      -- Add more language servers here following the same pattern
+      -- Example for Python:
+      -- vim.lsp.config('pyright', {
+      --   cmd = { 'pyright-langserver', '--stdio' },
+      --   root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', '.git' },
+      --   capabilities = capabilities,
+      -- })
+      -- vim.api.nvim_create_autocmd('FileType', {
+      --   pattern = 'python',
+      --   callback = function() vim.lsp.enable('pyright') end,
+      -- })
     end,
   },
 

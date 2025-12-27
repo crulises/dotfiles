@@ -6,30 +6,15 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Bootstrap lazy.nvim plugin manager
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable',
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
+-- Set to true if you have a Nerd Font installed
+vim.g.have_nerd_font = false
 
--- Load core configuration
-require('config.options')
-require('config.keymaps')
+-- Load core configuration modules
+require('config.options')    -- Editor settings and options
+require('config.keymaps')    -- Key mappings
+require('config.autocmds')   -- Auto commands
 
--- Load plugins
-require('lazy').setup('plugins', {
-  ui = {
-    border = 'rounded',
-  },
-  change_detection = {
-    notify = false,
-  },
-})
+-- Bootstrap and load lazy.nvim plugin manager
+require('config.lazy')
+
+-- vim: ts=2 sts=2 sw=2 et
