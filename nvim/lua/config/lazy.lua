@@ -1,13 +1,8 @@
--- ============================================================================
 -- LAZY.LUA - Plugin Manager Bootstrap and Configuration
--- ============================================================================
 -- Bootstraps lazy.nvim and loads all plugin specifications
 -- See `:help lazy.nvim.txt` for more information
--- ============================================================================
 
--- ============================================================================
 -- Bootstrap lazy.nvim
--- ============================================================================
 -- Install lazy.nvim if not already installed
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -35,18 +30,13 @@ end
 -- Add lazy.nvim to runtime path
 vim.opt.rtp:prepend(lazypath)
 
--- ============================================================================
 -- Load Plugins
--- ============================================================================
--- Setup lazy.nvim with plugin specifications
--- Plugins are organized in separate files in lua/plugins/
+-- NOTE: Plugins are organized in separate files in lua/plugins/
 require('lazy').setup({
-	-- Load all plugin specs from lua/plugins/ directory
+	-- NOTE: Load all plugin specs from lua/plugins/ directory
 	{ import = 'plugins' },
 }, {
-	-- ============================================================================
 	-- Lazy.nvim UI Configuration
-	-- ============================================================================
 	ui = {
 		-- Icons used in the lazy.nvim UI
 		icons = vim.g.have_nerd_font and {} or {
@@ -66,9 +56,7 @@ require('lazy').setup({
 		},
 	},
 
-	-- ============================================================================
 	-- Performance
-	-- ============================================================================
 	performance = {
 		rtp = {
 			-- Disable some built-in plugins you don't use
@@ -85,12 +73,10 @@ require('lazy').setup({
 		},
 	},
 
-	-- ============================================================================
 	-- Change Detection
-	-- ============================================================================
 	change_detection = {
 		enabled = true, -- Automatically check for config changes
-		notify = false, -- Don't notify when config changes (can be annoying)
+		notify = false,
 	},
 })
 

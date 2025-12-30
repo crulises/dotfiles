@@ -1,18 +1,12 @@
--- ============================================================================
 -- AUTOCMDS.LUA - Automatic Commands
--- ============================================================================
 -- Auto commands that run on specific events
 -- See `:help lua-guide-autocommands` and `:help autocmd`
--- ============================================================================
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
--- ============================================================================
 -- Highlight on Yank
--- ============================================================================
--- Briefly highlight text when yanking (copying)
--- Try it with `yap` in normal mode to copy a paragraph
+-- Briefly highlight text when yanking
 autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = augroup('highlight-yank', { clear = true }),
@@ -21,9 +15,7 @@ autocmd('TextYankPost', {
   end,
 })
 
--- ============================================================================
 -- Auto-resize Splits
--- ============================================================================
 -- Automatically resize splits when terminal is resized
 autocmd('VimResized', {
   desc = 'Resize splits when terminal is resized',
@@ -33,9 +25,6 @@ autocmd('VimResized', {
   end,
 })
 
--- ============================================================================
--- Close Certain Windows with 'q'
--- ============================================================================
 -- Make it easy to close certain special windows with just 'q'
 autocmd('FileType', {
   desc = 'Close certain filetypes with q',
@@ -53,9 +42,6 @@ autocmd('FileType', {
   end,
 })
 
--- ============================================================================
--- Remember Cursor Position
--- ============================================================================
 -- When opening a file, jump to the last known cursor position
 autocmd('BufReadPost', {
   desc = 'Go to last cursor position when opening a file',

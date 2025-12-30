@@ -1,9 +1,5 @@
--- ============================================================================
 -- COLORSCHEME.LUA - Color Scheme Configuration
--- ============================================================================
--- Defines the color scheme for the editor
--- See `:Telescope colorscheme` to browse installed schemes
--- ============================================================================
+-- `:Telescope colorscheme` to browse installed schemes
 
 return {
   'folke/tokyonight.nvim',
@@ -33,7 +29,6 @@ return {
   end,
 }
 
--- Alternative colorschemes (uncomment to try):
 -- return { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 }
 -- return { 'rose-pine/neovim', name = 'rose-pine', priority = 1000 }
 -- return { 'rebelot/kanagawa.nvim', priority = 1000 }

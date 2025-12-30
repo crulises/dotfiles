@@ -1,21 +1,14 @@
--- ============================================================================
 -- UTILITIES.LUA - Small Utility Plugins
--- ============================================================================
 -- Collection of small, focused plugins that enhance editing
--- ============================================================================
 
 return {
-  -- ==========================================================================
   -- Automatic Indentation Detection
-  -- ==========================================================================
   {
     'tpope/vim-sleuth',
     event = { 'BufReadPost', 'BufNewFile' },
   },
-  
-  -- ==========================================================================
+
   -- Git Signs in Gutter
-  -- ==========================================================================
   {
     'lewis6991/gitsigns.nvim',
     event = { 'BufReadPost', 'BufNewFile' },
@@ -27,17 +20,17 @@ return {
         topdelete    = { text = '‾' },
         changedelete = { text = '~' },
       },
-      
+
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
         local map = function(mode, l, r, desc)
           vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
         end
-        
+
         -- Navigation
         map('n', ']h', gs.next_hunk, 'Next git hunk')
         map('n', '[h', gs.prev_hunk, 'Previous git hunk')
-        
+
         -- Actions
         map('n', '<leader>hs', gs.stage_hunk, 'Stage hunk')
         map('n', '<leader>hr', gs.reset_hunk, 'Reset hunk')
@@ -48,22 +41,20 @@ return {
         map('n', '<leader>hb', function() gs.blame_line({ full = true }) end, 'Blame line')
         map('n', '<leader>hd', gs.diffthis, 'Diff this')
         map('n', '<leader>hD', function() gs.diffthis('~') end, 'Diff this ~')
-        
+
         -- Text objects
         map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'Select git hunk')
       end,
     },
   },
-  
-  -- ==========================================================================
+
   -- Which-key: Show Available Keybindings
-  -- ==========================================================================
   {
     'folke/which-key.nvim',
     event = 'VimEnter',
     opts = {
       delay = 500,  -- Time before popup shows (ms)
-      
+
       icons = {
         mappings = vim.g.have_nerd_font,
         keys = vim.g.have_nerd_font and {} or {
@@ -80,7 +71,7 @@ return {
           Tab = '<Tab> ',
         },
       },
-      
+
       -- Document leader key groups
       spec = {
         { '<leader>f', group = 'Find (Telescope)' },
@@ -92,10 +83,8 @@ return {
       },
     },
   },
-  
-  -- ==========================================================================
+
   -- Mini.nvim: Collection of Small Modules
-  -- ==========================================================================
   {
     'echasnovski/mini.nvim',
     event = 'VeryLazy',
@@ -103,35 +92,33 @@ return {
       -- Better text objects (around/inside)
       -- Examples: va), yinq, ci'
       require('mini.ai').setup({ n_lines = 500 })
-      
+
       -- Add/delete/replace surroundings
       -- Examples: saiw), sd', sr)'
       require('mini.surround').setup()
-      
+
       -- Simple statusline
       local statusline = require('mini.statusline')
       statusline.setup({
         use_icons = vim.g.have_nerd_font,
         set_vim_settings = false,
       })
-      
+
       -- Customize cursor location section
       statusline.section_location = function()
         return '%2l:%-2v'
       end
     end,
   },
-  
-  -- ==========================================================================
+
   -- Todo Comments
-  -- ==========================================================================
   {
     'folke/todo-comments.nvim',
     event = { 'BufReadPost', 'BufNewFile' },
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {
       signs = false,  -- Don't show signs in gutter
-      
+
       -- Keywords recognized as todo comments
       keywords = {
         FIX  = { icon = ' ', color = 'error', alt = { 'FIXME', 'BUG', 'FIXIT', 'ISSUE' } },
