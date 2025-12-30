@@ -1,9 +1,6 @@
--- ============================================================================
 -- LSP.LUA - Language Server Protocol Configuration
--- ============================================================================
 -- LSP provides features like auto-completion, go-to-definition, and more
 -- See `:help lsp` for more information
--- ============================================================================
 
 return {
   'neovim/nvim-lspconfig',
@@ -23,9 +20,7 @@ return {
   },
 
   config = function()
-    -- ========================================================================
     -- LSP Attach Callback
-    -- ========================================================================
     -- This function runs when an LSP server attaches to a buffer
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
@@ -70,16 +65,12 @@ return {
       end,
     })
 
-    -- ========================================================================
     -- LSP Server Capabilities
-    -- ========================================================================
     -- Capabilities advertised to LSP servers
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
 
-    -- ========================================================================
     -- Server Configurations
-    -- ========================================================================
     -- Configure each LSP server here
     local servers = {
       -- Lua
@@ -97,9 +88,7 @@ return {
       },
     }
 
-    -- ========================================================================
     -- Mason Setup
-    -- ========================================================================
     require('mason').setup()
 
     require('mason-tool-installer').setup({ ensure_installed = ensure_installed })

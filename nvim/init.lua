@@ -1,15 +1,12 @@
--- ============================================================================
 -- INIT.LUA - Main Neovim Configuration Entry Point
--- ============================================================================
--- This is a streamlined, modular configuration based on kickstart.nvim
+-- This is a modular configuration based on kickstart.nvim
 -- Configuration is split into logical modules for better organization
--- ============================================================================
 
 -- Set leader keys first (must happen before plugins load)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Set to true if you have a Nerd Font installed
+-- If a Nerd Font is installed this can be set to true
 vim.g.have_nerd_font = false
 
 -- Load core configuration modules

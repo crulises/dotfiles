@@ -1,9 +1,5 @@
--- ============================================================================
 -- TREESITTER.LUA - Syntax Highlighting and Code Understanding
--- ============================================================================
--- Treesitter provides better syntax highlighting and code understanding
 -- See `:help nvim-treesitter` for more information
--- ============================================================================
 
 return {
   'nvim-treesitter/nvim-treesitter',
@@ -17,9 +13,7 @@ return {
   
   config = function()
     require('nvim-treesitter.configs').setup({
-      -- ========================================================================
       -- Language Parsers
-      -- ========================================================================
       -- Languages to install automatically
       ensure_installed = {
         'bash',
@@ -42,9 +36,7 @@ return {
       -- Automatically install missing parsers when entering buffer
       auto_install = true,
       
-      -- ========================================================================
       -- Syntax Highlighting
-      -- ========================================================================
       highlight = {
         enable = true,  -- Enable treesitter-based highlighting
         
@@ -53,17 +45,13 @@ return {
         additional_vim_regex_highlighting = { 'ruby' },
       },
       
-      -- ========================================================================
       -- Indentation
-      -- ========================================================================
       indent = {
         enable = true,
         disable = { 'ruby' },  -- Disable for problematic languages
       },
       
-      -- ========================================================================
       -- Incremental Selection
-      -- ========================================================================
       incremental_selection = {
         enable = true,
         keymaps = {
