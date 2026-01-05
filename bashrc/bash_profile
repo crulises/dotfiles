@@ -1,0 +1,56 @@
+# ~/.bash_profile
+# Bash configuration for login shells
+
+# ENVIRONMENT VARIABLES
+
+# Set default editor
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+# Set default pager
+export PAGER=less
+
+# Less options
+export LESS='-R -i -M -F -X'
+
+# PATH CONFIGURATION
+# Function to safely add to PATH if directory exists
+add_to_path() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        export PATH="$1:$PATH"
+    fi
+}
+
+# Add local bin directories
+add_to_path "$HOME/.local/bin"
+add_to_path "$HOME/bin"
+
+# Add miniconda binaries if they exist
+add_to_path "$HOME/miniconda3/bin"
+
+
+# LANGUAGE & LOCALE
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# TOOL-SPECIFIC CONFIGURATIONS
+# XDG Base Directory specification
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# fzf configuration (if installed)
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
+# SOURCE BASHRC
+# Source .bashrc for interactive shells
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
+
+# LOCAL OVERRIDES
+# Source local profile configuration if it exists
+if [ -f ~/.bash_profile.local ]; then
+    . ~/.bash_profile.local
+fi
+
