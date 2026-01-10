@@ -28,3 +28,10 @@ alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
 alias gl='git log --oneline --graph --decorate'
+
+# rg aliases
+alias rgi='rg -i'           # Case-insensitive
+alias rgw='rg -w'           # Whole words
+alias rgh='rg --hidden'     # Include hidden files
+alias rgl='rg -l'           # List files with matches
+alias rgc='rg -C 3'         # Show context
