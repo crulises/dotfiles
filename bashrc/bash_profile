@@ -28,10 +28,13 @@ add_to_path "$HOME/bin"
 # Add miniconda binaries if they exist
 add_to_path "$HOME/miniconda3/bin"
 
+# tmux-tools
+add_to_path "$HOME/.tmux-tools"
+
 
 # LANGUAGE & LOCALE
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+# export LANG=en_US.UTF-8
+# export LC_ALL=en_US.UTF-8
 
 # TOOL-SPECIFIC CONFIGURATIONS
 # XDG Base Directory specification
